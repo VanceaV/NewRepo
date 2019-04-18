@@ -1,0 +1,29 @@
+
+
+node{
+
+stage('JenkinsToAWSDeploy'){
+    
+    
+    
+    withAWS(region:'us-east-1',credentials:'JenkinsCred') {
+
+                 def identity=awsIdentity();//Log AWS credentials
+                 
+                 
+                dir("/var/lib/jenkins/workspace/CI_JOB/target"){
+                
+                 sh label: '', script: 'ansible-playbook provision.yml'
+                
+                }
+                 
+                 
+
+                
+            }
+
+    
+    }
+    
+    
+}
